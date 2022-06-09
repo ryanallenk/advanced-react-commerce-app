@@ -33,7 +33,6 @@ const LogoStyles = styled.h1`
   }
 `;
 
-
 export default function Header() {
   return (
     <HeaderStyles>
