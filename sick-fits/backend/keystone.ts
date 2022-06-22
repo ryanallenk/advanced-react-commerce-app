@@ -5,6 +5,7 @@ import {
 } from '@keystone-next/keystone/session';
 import { createAuth } from '@keystone-next/auth';
 import { User } from './schemas/User';
+import { Product } from './schemas/Product';
 import 'dotenv/config';
 
 const databaseURL = process.env.DATABASE_URL || 'mongodb://localhost/';
@@ -40,6 +41,7 @@ export default withAuth(
     lists: createSchema({
       // schema items here
       User,
+      Product,
     }),
     ui: {
       // Show UI only for people who pass logic
