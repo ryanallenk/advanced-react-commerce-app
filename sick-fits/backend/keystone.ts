@@ -6,6 +6,7 @@ import {
 import { createAuth } from '@keystone-next/auth';
 import { User } from './schemas/User';
 import { Product } from './schemas/Product';
+import { ProductImage } from './schemas/ProductImage';
 import 'dotenv/config';
 
 const databaseURL = process.env.DATABASE_URL || 'mongodb://localhost/';
@@ -42,6 +43,7 @@ export default withAuth(
       // schema items here
       User,
       Product,
+      ProductImage,
     }),
     ui: {
       // Show UI only for people who pass logic
