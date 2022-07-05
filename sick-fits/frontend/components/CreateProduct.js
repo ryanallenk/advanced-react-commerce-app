@@ -1,5 +1,6 @@
 import { useMutation } from '@apollo/client';
 import gql from 'graphql-tag';
+import Router from 'next/router';
 import DisplayError from './ErrorMessage';
 import useForm from '../lib/useForm';
 import Form from './styles/Form';
@@ -7,7 +8,7 @@ import { ALL_PRODUCTS_QUERY } from './Products';
 
 const CREATE_PRODUCT_MUTATION = gql`
   mutation CREATE_PRODUCT_MUTATION(
-    # Which variables arte getting passed in? and what types are they?
+    # Which variables arte getting passed in? and what types are they not JS this is GraphQL?
     $name: String!
     $description: String!
     $price: Int!
@@ -48,10 +49,13 @@ export default function CreateProduct() {
     <Form
       onSubmit={async (e) => {
         e.preventDefault();
-        console.log(inputs);
         // submit the input fields to the backened
-        await createProduct();
+        const res = await createProduct();
         clearForm();
+        // Go to that products page
+        Router.push({
+          pathname: `/product/${res.data.createProduct.id}`,
+        });
       }}
     >
       <DisplayError error={error} />
