@@ -35,7 +35,7 @@ export default function Products() {
     <div>
       <ProductsListStyles>
         {data.allProducts.map((product) => (
-          <Product product={product} />
+          <Product product={product} key={product.id} />
         ))}
       </ProductsListStyles>
     </div>
