@@ -32,10 +32,9 @@ function CartItem({ cartItem }) {
       />
       <div>
         <h3>{product.name}</h3>
-        <p>{formatMoney(product.price * cartItem.quantity)}</p>-
+        <p>{formatMoney(product.price * cartItem.quantity)}</p> -
         <em>
-          {cartItem.quantity} &times; {formatMoney(product.price)}
-          each
+          {cartItem.quantity} &times; {formatMoney(product.price)} each
         </em>
       </div>
     </CartItemStyles>
