@@ -11,6 +11,7 @@ import 'dotenv/config';
 import { insertSeedData } from './seed-data';
 import { sendPasswordResetEmail } from './lib/mail';
 import { CartItem } from './schemas/CartItem';
+import { extendGraphqlSchema } from './mutations';
 
 const databaseURL = process.env.DATABASE_URL || 'mongodb://localhost/';
 
@@ -60,6 +61,7 @@ export default withAuth(
       ProductImage,
       CartItem,
     }),
+    extendGraphqlSchema,
     ui: {
       // Show UI only for people who pass logic
       isAccessAllowed: ({ session }) =>
