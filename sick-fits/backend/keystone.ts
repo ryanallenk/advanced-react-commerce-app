@@ -69,7 +69,7 @@ export default withAuth(
         !!session?.data,
     },
     session: withItemData(statelessSessions(sessionConfig), {
-      User: 'id',
+      User: 'id name email',
     }),
   })
 );
