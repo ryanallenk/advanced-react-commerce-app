@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import Nav from './Nav';
 import Cart from './Cart';
 import Search from './Search';
-import { useEffect, useState } from 'react';
 
 const HeaderStyles = styled.header`
   .bar {
