@@ -1,5 +1,12 @@
-import { CardElement, Elements } from '@stripe/react-stripe-js';
+import {
+  CardElement,
+  Elements,
+  useElements,
+  useStripe,
+} from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import nProgress from 'nprogress';
+import { useState } from 'react';
 import styled from 'styled-components';
 import SickButton from './styles/SickButton';
 
@@ -14,17 +21,48 @@ const CheckoutFormStyles = styled.form`
 
 const stripeLib = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY);
 
-export default function Checkout() {
-  function handleSubmit(e) {
+function CheckoutForm() {
+  const [error, setError] = useState();
+  const [loading, setLoading] = useState(false);
+  const stripe = useStripe();
+  const elements = useElements();
+  async function handleSubmit(e) {
+    // 1. stop the form from submitting and turn the loader on
     e.preventDefault();
+    setLoading(true);
     console.log('Do some work here');
+    // 2. start the page transition
+    nProgress.start();
+    // 3. create the payment method via stripe
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: 'card',
+      card: elements.getElement(CardElement),
+    });
+    console.log(paymentMethod);
+    // 4. handle any errors from stripe
+    if (error) {
+      setError(error);
+    }
+    // 5. send the token on success from step 3 to keystone server via a custom mutation
+    // 6. change the page to view the order
+    // 7. close the cart
+    // 8. turn the loader off
+    setLoading(false);
+    nProgress.done();
   }
   return (
+    <CheckoutFormStyles onSubmit={handleSubmit}>
+      {error && <p style={{ fontSize: 12 }}>{error.message}</p>}
+      <CardElement />
+      <SickButton> Checkout now </SickButton>
+    </CheckoutFormStyles>
+  );
+}
+
+export default function Checkout() {
+  return (
     <Elements stripe={stripeLib}>
-      <CheckoutFormStyles onSubmit={handleSubmit}>
-        <CardElement />
-        <SickButton> Checkout now </SickButton>
-      </CheckoutFormStyles>
+      <CheckoutForm />
     </Elements>
   );
 }
