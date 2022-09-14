@@ -14,6 +14,7 @@ import { insertSeedData } from './seed-data';
 import { sendPasswordResetEmail } from './lib/mail';
 import { CartItem } from './schemas/CartItem';
 import { extendGraphqlSchema } from './mutations';
+import { Role } from './schemas/Role';
 
 const databaseURL = process.env.DATABASE_URL || 'mongodb://localhost/';
 
@@ -64,6 +65,7 @@ export default withAuth(
       CartItem,
       OrderItem,
       Order,
+      Role,
     }),
     extendGraphqlSchema,
     ui: {
