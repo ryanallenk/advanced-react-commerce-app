@@ -37,7 +37,7 @@ export const rules = {
     if (!isSignedIn({ session })) {
       return false;
     }
-    // 1. do they have the permission of canManageProducts
+    // 1. do they have the permission of canOrder
     if (permissions.canManageCart({ session })) {
       return true;
     }
@@ -52,7 +52,7 @@ export const rules = {
     if (permissions.canManageCart({ session })) {
       return true;
     }
-    // 2. if not, do they own this item?
+    // 2. if not, do they own this order?
     return { order: { user: { id: session.itemId } } };
   },
   canReadProducts({ session }: ListAccessArgs) {
@@ -63,5 +63,16 @@ export const rules = {
       return true; // they can read everything!
     }
     return { status: 'AVAILABLE' };
+  },
+  canManageUsers({ session }: ListAccessArgs) {
+    if (!isSignedIn({ session })) {
+      return false;
+    }
+    // 1. do they have the permission of canManageUsers
+    if (permissions.canManageUsers({ session })) {
+      return true;
+    }
+    // 2. if not, they may only update themselves
+    return { id: session.itemId };
   },
 };
