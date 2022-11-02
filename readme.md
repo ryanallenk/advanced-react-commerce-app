@@ -1,14 +1,11 @@
-![Advanced React & GraphQL](https://advancedreact.com/images/ARG/arg-facebook-share.png)
+# Sick Fits E-Commerce Site (Advanced React & GraphQL)
 
-# Advanced React & GraphQL
+A website built using Next.js (using Context and Hooks), Styled Components, GraphQL (Apollo Client) and Keystone.js (Headless CMS). 
 
-These are the starter files and stepped solutions for the [Advanced React & GraphQL](https://AdvancedReact.com) course by [Wes Bos](https://WesBos.com/).
+## Screenshots
 
-## Getting Help
-
-The best place to get help is in the #advanced-react slack room - there is a link in your course dashboard.
-
-## FAQ
-
-**Q:** Which Extensions for VS Code is Wes using?  
-**A:** All my extensions are listed on [my dotfiles repo](https://github.com/wesbos/dotfiles), but specifically this course uses [ESLint](https://github.com/Microsoft/vscode-eslint) and [Prettier](https://github.com/prettier/prettier-vscode).
+![Main page.](https://raw.githubusercontent.com/ryanallenk/advanced-react-commerce-app/master/docs/sickfits-main.png)
+![The cart sidebar popout.](https://github.com/ryanallenk/advanced-react-commerce-app/blob/master/docs/sick-fits-cart.png?raw=true)
+![Search for a product](https://github.com/ryanallenk/advanced-react-commerce-app/blob/master/docs/sick-fits-search.png?raw=true)
+![Add a product page.](https://github.com/ryanallenk/advanced-react-commerce-app/blob/master/docs/sick-fits-addproduct.png?raw=true)
+![Database structure](https://github.com/ryanallenk/advanced-react-commerce-app/blob/master/docs/sick-fits-db.png?raw=true)
